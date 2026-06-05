@@ -246,3 +246,15 @@ $$;
 revoke execute on function public.match_document_chunks from anon;
 revoke execute on function public.match_document_chunks from public;
 grant execute on function public.match_document_chunks to authenticated;
+
+-- =====================
+-- GRANT TABLE ACCESS TO AUTHENTICATED ROLE
+-- =====================
+grant select, insert, update on public.profiles to authenticated;
+grant select on public.questions to authenticated;
+grant select, insert, update, delete on public.quiz_sessions to authenticated;
+grant select, insert, update, delete on public.quiz_answers to authenticated;
+grant select, insert, update, delete on public.user_progress to authenticated;
+grant select, insert, update, delete on public.streaks to authenticated;
+grant select, insert, update, delete on public.chat_messages to authenticated;
+grant select on public.document_chunks to authenticated;
