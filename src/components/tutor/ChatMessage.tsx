@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown'
 import { cn } from '@/lib/utils'
 
 interface ChatMessageProps {
@@ -24,12 +25,48 @@ export default function ChatMessage({ role, content }: ChatMessageProps) {
             : 'bg-slate-800 text-slate-100 rounded-tl-sm'
         )}
       >
-        {content.split('\n').map((line, i) => (
-          <span key={i}>
-            {line}
-            {i < content.split('\n').length - 1 && <br />}
-          </span>
-        ))}
+        {isUser ? (
+          content
+        ) : (
+          <ReactMarkdown
+            components={{
+              p: ({ children }) => (
+                <p className="mb-2 last:mb-0">{children}</p>
+              ),
+              strong: ({ children }) => (
+                <strong className="font-bold text-amber-400">{children}</strong>
+              ),
+              em: ({ children }) => (
+                <em className="italic text-slate-300">{children}</em>
+              ),
+              ul: ({ children }) => (
+                <ul className="list-disc list-inside space-y-1 mb-2">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="list-decimal list-inside space-y-1 mb-2">{children}</ol>
+              ),
+              li: ({ children }) => (
+                <li className="text-slate-200">{children}</li>
+              ),
+              code: ({ children }) => (
+                <code className="bg-slate-700 text-amber-300 px-1 py-0.5 rounded text-xs">
+                  {children}
+                </code>
+              ),
+              h1: ({ children }) => (
+                <h1 className="text-white font-bold text-base mb-2">{children}</h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-white font-bold text-sm mb-2">{children}</h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-white font-semibold text-sm mb-1">{children}</h3>
+              ),
+            }}
+          >
+            {content}
+          </ReactMarkdown>
+        )}
       </div>
 
       {isUser && (
