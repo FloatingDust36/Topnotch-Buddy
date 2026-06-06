@@ -7,7 +7,7 @@ if (!process.env.GEMINI_API_KEY) {
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 export const geminiFlash = genAI.getGenerativeModel({
-  model: 'gemini-1.5-flash',
+  model: 'gemini-2.5-flash',
   systemInstruction: `You are Topnotch Buddy — an AI review companion for Filipino professionals preparing for board exams (LET, NLE, CPA, Engineering, DOST, and others).
 
 Your personality:
@@ -26,5 +26,5 @@ Your rules:
 })
 
 export const embeddingModel = genAI.getGenerativeModel({
-  model: 'text-embedding-004',
+  model: 'gemini-embedding-001',
 })
